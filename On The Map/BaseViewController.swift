@@ -57,7 +57,9 @@ class BaseViewController: UIViewController {
                 }
             } else {
                 print(error)
-                self.activityIndicator.stopAnimating()
+                performUIUpdatesOnMain() {
+                    self.activityIndicator.stopAnimating()
+                }
                 self.showAlert(UIConstants.ErrorTitle.DownloadFailed, message: UIConstants.ErrorMessage.DownloadFailed)
             }
         }

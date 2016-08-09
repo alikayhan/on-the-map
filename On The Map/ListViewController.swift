@@ -79,7 +79,9 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Helper Functions
     private func refreshTable() {
         setUIEnabled(false)
-        scrollToFirstRow()
+        if !(appDelegate.studentInformationArray.isEmpty) {
+            scrollToFirstRow()
+        }
         getStudentLocationsData() {
             self.tableView.reloadData()
         }
