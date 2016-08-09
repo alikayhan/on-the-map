@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 // MARK: - Base View Controller
 // This class contains the properties and methods used commonly across other View Controllers.
@@ -87,12 +88,19 @@ class BaseViewController: UIViewController {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
         presentViewController(controller, animated: true, completion: nil)
         
+        // Delete the session with Udacity's API
         UdacityClient.sharedInstance().deleteSession() { (result, error) in
             if result != nil {
                 print("Logout successful")
             } else {
                 print(error)
             }
+        }
+        
+        // If user has logged in with Facebook, also logout the Facebook session
+        if FBSDKAccessToken.currentAccessToken() != nil {
+            print("Facebook logout successful")
+            FBSDKLoginManager().logOut()
         }
     }
     
