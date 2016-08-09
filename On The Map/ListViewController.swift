@@ -82,8 +82,8 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
         scrollToFirstRow()
         getStudentLocationsData() {
             self.tableView.reloadData()
-            self.setUIEnabled(true)
         }
+        setUIEnabled(true)
     }
     
     private func scrollToFirstRow() {

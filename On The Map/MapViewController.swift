@@ -114,8 +114,8 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
         getStudentLocationsData() {
             self.clearMap()
             self.populateMap()
-            self.setUIEnabled(true)
         }
+        setUIEnabled(true)
     }
     
     private func setUIEnabled(enabled: Bool) {

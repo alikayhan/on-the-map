@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FBSDKLoginKit
 
 class LoginViewController: BaseViewController {
     
@@ -49,7 +50,7 @@ class LoginViewController: BaseViewController {
                         self.appDelegate.sessionID = sessionID
                         self.appDelegate.accountID = accountID
                         self.completeLogin()
-                    } else if error?.userInfo["NSLocalizedDescription"] as! String == UIConstants.ErrorDescription.InvalidCredentials {
+                    } else if error?.userInfo["NSLocalizedDescription"] as! String == UdacityClient.ErrorDescription.InvalidCredentials {
                         self.showAlert(UIConstants.ErrorTitle.LoginFailed, message: UIConstants.ErrorMessage.LoginFailed)
                         self.setUIEnabled(true)
                     } else {
@@ -63,6 +64,35 @@ class LoginViewController: BaseViewController {
     
     @IBAction func signUp(sender: UIButton) {
         openURL(UIConstants.UdacitySignupURL)
+    }
+    
+    @IBAction func loginWithFacebook(sender: UIButton) {
+        FBSDKLoginManager().logInWithReadPermissions(["public_profile"], fromViewController: self) { (result, error) -> Void in
+            
+            if (error != nil) {
+                print("Facebook Login Error")
+            } else if result.isCancelled {
+                print("User Cancelled Facebook Login")
+            } else {
+                self.setUIEnabled(false)
+                
+                UdacityClient.sharedInstance().createSessionWithFacebookAuthentication(FBSDKAccessToken.currentAccessToken().tokenString) { (sessionID, accountID, error) in
+                    performUIUpdatesOnMain {
+                        if sessionID != nil && accountID != nil {
+                            self.appDelegate.sessionID = sessionID
+                            self.appDelegate.accountID = accountID
+                            self.completeLogin()
+                        } else if error?.userInfo["NSLocalizedDescription"] as! String == UdacityClient.ErrorDescription.InvalidCredentials {
+                            self.showAlert(UIConstants.ErrorTitle.FacebookLoginFailed, message: UIConstants.ErrorMessage.FacebookLoginFailed)
+                            self.setUIEnabled(true)
+                        } else {
+                            self.showAlert(UIConstants.ErrorTitle.NetworkProblem, message: UIConstants.ErrorMessage.NetworkProblem)
+                            self.setUIEnabled(true)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Helper Functions
@@ -126,7 +156,6 @@ extension LoginViewController {
             activityIndicator.stopAnimating()
             loginButton.alpha = 1.0
         } else {
-            // activityIndicator.startAnimating()
             startActivityIndicator()
             loginButton.alpha = 0.5
         }

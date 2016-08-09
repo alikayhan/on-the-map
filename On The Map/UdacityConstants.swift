@@ -39,6 +39,9 @@ extension UdacityClient {
         static let Udacity = "udacity"
         static let Username = "username"
         static let Password = "password"
+        
+        static let FacebookMobile = "facebook_mobile"
+        static let AccessToken = "access_token"
     }
     
     // MARK: - JSON Response Keys
@@ -53,11 +56,18 @@ extension UdacityClient {
         static let Session = "session"
         static let ID = "id"
         static let Expiration = "expiration"
+        static let Status = "status"
+        static let Error = "error"
         
         // MARK: - Student
         static let User = "user"
         static let LastName = "last_name"
         static let FirstName = "first_name"
+    }
+    
+    // MARK: - Error Description Strings
+    struct ErrorDescription {
+        static let InvalidCredentials = "Your request returned a status code other than 2xx!"
     }
 
 }

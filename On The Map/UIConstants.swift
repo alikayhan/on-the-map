@@ -61,6 +61,7 @@ struct UIConstants {
     struct ErrorTitle {
         static let UserNamePasswordEmpty = "Empty Email/Password"
         static let LoginFailed = "Invalid Credentials"
+        static let FacebookLoginFailed = "Facebook Login Failed"
         static let NetworkProblem = "Network Problem"
         static let DownloadFailed = "Download Failed"
         static let NoValidURL = "No Valid URL"
@@ -76,6 +77,7 @@ struct UIConstants {
     struct ErrorMessage {
         static let UserNamePasswordEmpty = "Please make sure that you have entered both Email and Password information."
         static let LoginFailed = "Please make sure that you have entered the correct Email and Password for your Udacity account."
+        static let FacebookLoginFailed = "Please make sure that you linked your Facebook account with Udacity account and try again."
         static let NetworkProblem = "Please make sure that your device is connected to Internet and try again."
         static let DownloadFailed = "The application could not retrieve the locations and information of the students from the server. Please try again."
         static let NoValidURL = "The detail information entered by the student is not a valid URL."
@@ -91,11 +93,6 @@ struct UIConstants {
     // MARK: - String Keys
     struct StringKey {
         static let UserName = "{userName}"
-    }
-    
-    // MARK: - Error Description Strings
-    struct ErrorDescription {
-        static let InvalidCredentials = "Your request returned a status code other than 2xx!"
     }
     
     // MARK: - UdacitySignupURL

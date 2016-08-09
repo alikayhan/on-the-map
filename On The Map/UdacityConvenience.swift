@@ -39,6 +39,32 @@ extension UdacityClient {
         }
     }
     
+    // MARK: - Create Session with Facebook Authentication
+    func createSessionWithFacebookAuthentication(accessToken: String, completionHandlerForCreateSession: (sessionID: String?, accountID: String?, error: NSError?) -> Void) {
+        
+        /* Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let method: String = Methods.Session
+        
+        let jsonBody = "{\"\(UdacityClient.JSONBodyKeys.FacebookMobile)\": {\"\(UdacityClient.JSONBodyKeys.AccessToken)\": \"\(accessToken)\"}}"
+        
+        /* Make the request */
+        taskForPOSTMethod(method, jsonBody: jsonBody) { (results, error) in
+            
+            /* Send the desired value(s) to completion handler */
+            if let error = error {
+                print(error)
+                completionHandlerForCreateSession(sessionID: nil, accountID: nil, error: error)
+            } else {
+                if let sessionID = results.valueForKeyPath("\(UdacityClient.JSONResponseKeys.Session).\(UdacityClient.JSONResponseKeys.ID)") as? String, let accountID = results.valueForKeyPath("\(UdacityClient.JSONResponseKeys.Account).\(UdacityClient.JSONResponseKeys.Key)") as? String {
+                    completionHandlerForCreateSession(sessionID: sessionID, accountID: accountID, error: nil)
+                } else {
+                    completionHandlerForCreateSession(sessionID: nil, accountID: nil, error: NSError(domain: "createSessionWithFacebookAuthentication parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse createSessionWithFacebookAuthentication"]))
+                }
+            }
+        }
+    }
+    
+    
     // MARK: - Delete Session
     func deleteSession(completionHandlerForDeleteSession: (result: String?, error: NSError?) -> Void) {
         

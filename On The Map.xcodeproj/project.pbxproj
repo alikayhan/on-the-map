@@ -30,9 +30,13 @@
 		B8D1C1A11D3E695600C3FB8A /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D1C1A01D3E695600C3FB8A /* UIConstants.swift */; };
 		B8F057A21D35199B00B11FAE /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F057A11D35199B00B11FAE /* ParseConvenience.swift */; };
 		B8F057A41D367E9400B11FAE /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F057A31D367E9400B11FAE /* UdacityConvenience.swift */; };
+		CD3A8B61F49C40991C2694D7 /* Pods_On_The_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E5592DD7CCB208D41DBC06B /* Pods_On_The_Map.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		17247E0123BFA6D65B4D8D58 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
+		328C4CA543D09BD66D63BB47 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
+		4E5592DD7CCB208D41DBC06B /* Pods_On_The_Map.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_On_The_Map.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B831E6901D20530A002735CC /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B841904C1D32A0D800385315 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		B841904E1D32A39000385315 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
@@ -65,17 +69,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD3A8B61F49C40991C2694D7 /* Pods_On_The_Map.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65048E20BBD8E599A34434D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				328C4CA543D09BD66D63BB47 /* Pods-On The Map.debug.xcconfig */,
+				17247E0123BFA6D65B4D8D58 /* Pods-On The Map.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		96D40A3CA9F35EDCB58A70D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4E5592DD7CCB208D41DBC06B /* Pods_On_The_Map.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B8B1542F1D1ECB6100C23482 = {
 			isa = PBXGroup;
 			children = (
 				B8B1543A1D1ECB6100C23482 /* On The Map */,
 				B8B154391D1ECB6100C23482 /* Products */,
+				65048E20BBD8E599A34434D7 /* Pods */,
+				96D40A3CA9F35EDCB58A70D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,9 +221,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8B1544A1D1ECB6100C23482 /* Build configuration list for PBXNativeTarget "On The Map" */;
 			buildPhases = (
+				6578C13EA54CC5246DC62591 /* [CP] Check Pods Manifest.lock */,
 				B8B154341D1ECB6100C23482 /* Sources */,
 				B8B154351D1ECB6100C23482 /* Frameworks */,
 				B8B154361D1ECB6100C23482 /* Resources */,
+				5877E0C72EA34FB54786DBD2 /* [CP] Embed Pods Frameworks */,
+				FCC7C5293382F00305F43200 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -259,6 +286,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5877E0C72EA34FB54786DBD2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-On The Map/Pods-On The Map-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6578C13EA54CC5246DC62591 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FCC7C5293382F00305F43200 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-On The Map/Pods-On The Map-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B8B154341D1ECB6100C23482 /* Sources */ = {
@@ -392,6 +467,7 @@
 		};
 		B8B1544B1D1ECB6100C23482 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 328C4CA543D09BD66D63BB47 /* Pods-On The Map.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "On The Map/Info.plist";
@@ -403,6 +479,7 @@
 		};
 		B8B1544C1D1ECB6100C23482 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17247E0123BFA6D65B4D8D58 /* Pods-On The Map.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "On The Map/Info.plist";
