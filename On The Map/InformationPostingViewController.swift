@@ -84,14 +84,14 @@ class InformationPostingViewController: BaseViewController {
     private func completePostingOrUpdating(result: String?, error: NSError?) -> Void {
         if let result = result {
             print(result)
+            stopActivityIndicator()
             performUIUpdatesOnMain() {
-                self.activityIndicator.stopAnimating()
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
         } else {
             print(error)
+            stopActivityIndicator()
             performUIUpdatesOnMain() {
-                self.activityIndicator.stopAnimating()
                 self.showAlert(UIConstants.ErrorTitle.PostingFailed, message: UIConstants.ErrorMessage.PostingFailed)
             }
         }
@@ -243,7 +243,7 @@ extension InformationPostingViewController: MKMapViewDelegate {
             (placemarks, error) in
             
             guard let placemarks = placemarks else {
-                self.activityIndicator.stopAnimating()
+                self.stopActivityIndicator()
                 self.showAlert(UIConstants.ErrorTitle.GeocodingFailed, message: UIConstants.ErrorMessage.GeocodingFailed)
                 return
             }
@@ -266,8 +266,8 @@ extension InformationPostingViewController: MKMapViewDelegate {
             self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.Longitude] = Double(longitude!)
             
             // Perform UI updates while showing and zooming into the map
+            self.stopActivityIndicator()
             performUIUpdatesOnMain {
-                self.activityIndicator.stopAnimating()
                 self.showURLPostingStackView()
                 self.zoomToPin(annotation)
             }

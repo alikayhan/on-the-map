@@ -53,13 +53,11 @@ class BaseViewController: UIViewController {
                 self.appDelegate.studentInformationArray = result
                 performUIUpdatesOnMain {
                     completionClosure()
-                    self.activityIndicator.stopAnimating()
                 }
+                self.stopActivityIndicator()
             } else {
                 print(error)
-                performUIUpdatesOnMain() {
-                    self.activityIndicator.stopAnimating()
-                }
+                self.stopActivityIndicator()
                 self.showAlert(UIConstants.ErrorTitle.DownloadFailed, message: UIConstants.ErrorMessage.DownloadFailed)
             }
         }
@@ -123,6 +121,12 @@ class BaseViewController: UIViewController {
     func startActivityIndicator() {
         performUIUpdatesOnMain() {
             self.activityIndicator.startAnimating()
+        }
+    }
+    
+    func stopActivityIndicator() {
+        performUIUpdatesOnMain() {
+            self.activityIndicator.stopAnimating()
         }
     }
     

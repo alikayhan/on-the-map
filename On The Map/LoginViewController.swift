@@ -100,6 +100,8 @@ class LoginViewController: BaseViewController {
         checkIfstudentHasAlreadyPosted(appDelegate.accountID!)
         createStudentInformationDictionaryFromPublicData(appDelegate.accountID!)
         
+        stopActivityIndicator()
+        
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapListTabBarController") as! UITabBarController
         presentViewController(controller, animated: true, completion: nil)
     }
@@ -153,7 +155,7 @@ extension LoginViewController {
         
         // Adjust login button alpha
         if enabled {
-            activityIndicator.stopAnimating()
+            stopActivityIndicator()
             loginButton.alpha = 1.0
         } else {
             startActivityIndicator()
