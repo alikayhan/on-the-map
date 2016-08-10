@@ -27,7 +27,6 @@ class LoginViewController: BaseViewController {
     // MARK: - Lifecycle Functions
     override func viewWillAppear(animated: Bool) {
         configureUI()
-        setUIEnabled(true)
     }
     
     override func viewDidLoad() {
@@ -74,7 +73,7 @@ class LoginViewController: BaseViewController {
             } else if result.isCancelled {
                 print("User Cancelled Facebook Login")
             } else {
-                self.setUIEnabled(false)
+                self.startActivityIndicator()
                 
                 UdacityClient.sharedInstance().createSessionWithFacebookAuthentication(FBSDKAccessToken.currentAccessToken().tokenString) { (sessionID, accountID, error) in
                     performUIUpdatesOnMain {
@@ -100,7 +99,7 @@ class LoginViewController: BaseViewController {
         checkIfstudentHasAlreadyPosted(StudentInformationManager.sharedInstance().accountID!)
         createStudentInformationDictionaryFromPublicData(StudentInformationManager.sharedInstance().accountID!)
         
-        stopActivityIndicator()
+        setUIEnabled(true)
         
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MapListTabBarController") as! UITabBarController
         presentViewController(controller, animated: true, completion: nil)
@@ -157,9 +156,11 @@ extension LoginViewController {
         if enabled {
             stopActivityIndicator()
             loginButton.alpha = 1.0
+            loginWithFacebookButton.alpha = 1.0
         } else {
             startActivityIndicator()
             loginButton.alpha = 0.5
+            loginWithFacebookButton.alpha = 0.5
         }
     }
     
