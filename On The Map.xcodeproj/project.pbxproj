@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B813B7331D5B450300A30332 /* StudentInformationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B813B7321D5B450300A30332 /* StudentInformationManager.swift */; };
 		B831E6911D20530A002735CC /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B831E6901D20530A002735CC /* BorderedButton.swift */; };
 		B841904D1D32A0D800385315 /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B841904C1D32A0D800385315 /* ParseConstants.swift */; };
 		B841904F1D32A39000385315 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B841904E1D32A39000385315 /* StudentInformation.swift */; };
@@ -37,6 +38,7 @@
 		17247E0123BFA6D65B4D8D58 /* Pods-On The Map.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.release.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.release.xcconfig"; sourceTree = "<group>"; };
 		328C4CA543D09BD66D63BB47 /* Pods-On The Map.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-On The Map.debug.xcconfig"; path = "Pods/Target Support Files/Pods-On The Map/Pods-On The Map.debug.xcconfig"; sourceTree = "<group>"; };
 		4E5592DD7CCB208D41DBC06B /* Pods_On_The_Map.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_On_The_Map.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B813B7321D5B450300A30332 /* StudentInformationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformationManager.swift; sourceTree = "<group>"; };
 		B831E6901D20530A002735CC /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B841904C1D32A0D800385315 /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		B841904E1D32A39000385315 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				B8D1C1A01D3E695600C3FB8A /* UIConstants.swift */,
+				B813B7321D5B450300A30332 /* StudentInformationManager.swift */,
 				B8B154521D1ED10D00C23482 /* Clients */,
 			);
 			name = Model;
@@ -354,6 +357,7 @@
 				B8B154581D1ED4F900C23482 /* UdacityConstants.swift in Sources */,
 				B8F057A21D35199B00B11FAE /* ParseConvenience.swift in Sources */,
 				B8B154561D1ED46D00C23482 /* GCDBlackBox.swift in Sources */,
+				B813B7331D5B450300A30332 /* StudentInformationManager.swift in Sources */,
 				B8B154621D1ED81E00C23482 /* ListViewController.swift in Sources */,
 				B8B1543C1D1ECB6100C23482 /* AppDelegate.swift in Sources */,
 				B841904F1D32A39000385315 /* StudentInformation.swift in Sources */,

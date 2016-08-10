@@ -47,8 +47,8 @@ class LoginViewController: BaseViewController {
             UdacityClient.sharedInstance().createSession(usernameTextField.text!, password: passwordTextField.text!) { (sessionID, accountID, error) in
                 performUIUpdatesOnMain {
                     if sessionID != nil && accountID != nil {
-                        self.appDelegate.sessionID = sessionID
-                        self.appDelegate.accountID = accountID
+                        StudentInformationManager.sharedInstance().sessionID = sessionID
+                        StudentInformationManager.sharedInstance().accountID = accountID
                         self.completeLogin()
                     } else if error?.userInfo["NSLocalizedDescription"] as! String == UdacityClient.ErrorDescription.InvalidCredentials {
                         self.showAlert(UIConstants.ErrorTitle.LoginFailed, message: UIConstants.ErrorMessage.LoginFailed)
@@ -79,8 +79,8 @@ class LoginViewController: BaseViewController {
                 UdacityClient.sharedInstance().createSessionWithFacebookAuthentication(FBSDKAccessToken.currentAccessToken().tokenString) { (sessionID, accountID, error) in
                     performUIUpdatesOnMain {
                         if sessionID != nil && accountID != nil {
-                            self.appDelegate.sessionID = sessionID
-                            self.appDelegate.accountID = accountID
+                            StudentInformationManager.sharedInstance().sessionID = sessionID
+                            StudentInformationManager.sharedInstance().accountID = accountID
                             self.completeLogin()
                         } else if error?.userInfo["NSLocalizedDescription"] as! String == UdacityClient.ErrorDescription.InvalidCredentials {
                             self.showAlert(UIConstants.ErrorTitle.FacebookLoginFailed, message: UIConstants.ErrorMessage.FacebookLoginFailed)
@@ -97,8 +97,8 @@ class LoginViewController: BaseViewController {
     
     // MARK: - Helper Functions
     private func completeLogin() {
-        checkIfstudentHasAlreadyPosted(appDelegate.accountID!)
-        createStudentInformationDictionaryFromPublicData(appDelegate.accountID!)
+        checkIfstudentHasAlreadyPosted(StudentInformationManager.sharedInstance().accountID!)
+        createStudentInformationDictionaryFromPublicData(StudentInformationManager.sharedInstance().accountID!)
         
         stopActivityIndicator()
         

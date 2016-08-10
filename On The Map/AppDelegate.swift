@@ -13,15 +13,8 @@ import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-    var sessionID: String?
-    var accountID: String?
-    
-    var studentHasAlreadyPosted: Bool?
-    var studentInformationDictionary: [String: AnyObject] = [:]
-    
-    var studentInformationArray: [StudentInformation] = []
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)

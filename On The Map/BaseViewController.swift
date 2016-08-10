@@ -14,7 +14,6 @@ import FBSDKLoginKit
 class BaseViewController: UIViewController {
     
     // MARK: - Properties
-    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     var activityIndicator : UIActivityIndicatorView!
     
     // MARK: - Constant Propery
@@ -50,7 +49,7 @@ class BaseViewController: UIViewController {
         
         ParseClient.sharedInstance().getStudentLocations(ParseClient.ParameterValues.Limit, order: ParseClient.ParameterValues.Order) {(result, error) in
             if let result = result {
-                self.appDelegate.studentInformationArray = result
+                StudentInformationManager.sharedInstance().studentInformationArray = result
                 performUIUpdatesOnMain {
                     completionClosure()
                 }
@@ -132,13 +131,13 @@ class BaseViewController: UIViewController {
     // MARK: - Navigate To Information Posting View
     func navigateToPostingView() {
         
-        if (appDelegate.studentHasAlreadyPosted != nil) && appDelegate.studentHasAlreadyPosted! {
+        if (StudentInformationManager.sharedInstance().studentHasAlreadyPosted != nil) && StudentInformationManager.sharedInstance().studentHasAlreadyPosted! {
             let customActions = [UIAlertAction(title: "Overwrite", style: .Default, handler: {
                 (sender: UIAlertAction) -> Void in
                 self.showInformationPostingView()
             }), UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)]
             
-            showAlert(UIConstants.ErrorTitle.AlreadyPosted, message: subtituteKeyInMessage(UIConstants.ErrorMessage.AlreadyPosted, key: UIConstants.StringKey.UserName, value: "\"\(appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.FirstName]!) \(appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.LastName]!)\""), customActions: customActions)
+            showAlert(UIConstants.ErrorTitle.AlreadyPosted, message: subtituteKeyInMessage(UIConstants.ErrorMessage.AlreadyPosted, key: UIConstants.StringKey.UserName, value: "\"\(StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.FirstName]!) \(StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.LastName]!)\""), customActions: customActions)
         } else {
             showInformationPostingView()
         }
@@ -155,10 +154,10 @@ class BaseViewController: UIViewController {
         ParseClient.sharedInstance().queryStudentLocation(uniqueKey) {(result, error) in
             if let result = result {
                 if !(result.isEmpty) {
-                    self.appDelegate.studentHasAlreadyPosted = true
-                    self.appDelegate.studentInformationDictionary[ParseClient.JSONResponseKeys.ObjectId] = result[0].objectId
+                    StudentInformationManager.sharedInstance().studentHasAlreadyPosted = true
+                    StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONResponseKeys.ObjectId] = result[0].objectId
                 } else {
-                    self.appDelegate.studentHasAlreadyPosted = false
+                    StudentInformationManager.sharedInstance().studentHasAlreadyPosted = false
                 }
             } else {
                 print(error)
@@ -180,9 +179,9 @@ class BaseViewController: UIViewController {
                     return
                 }
                 
-                self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.FirstName] = firstName
-                self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.LastName] = lastName
-                self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.UniqueKey] = self.appDelegate.accountID!
+                StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.FirstName] = firstName
+                StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.LastName] = lastName
+                StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.UniqueKey] = StudentInformationManager.sharedInstance().accountID!
             } else {
                 print(error)
             }

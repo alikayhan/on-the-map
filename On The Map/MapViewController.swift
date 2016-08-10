@@ -65,7 +65,7 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
         // The point annotations will be stored in this array, and then provided to the map view.
         var annotations = [MKPointAnnotation]()
         
-        for information in appDelegate.studentInformationArray {
+        for information in StudentInformationManager.sharedInstance().studentInformationArray {
             
             // Check if information has all the attributes which are needed to create an annotation
             if let lat = information.latitude,

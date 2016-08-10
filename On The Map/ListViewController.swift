@@ -32,7 +32,7 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     // MARK: - Table View Data Source
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.studentInformationArray.count
+        return StudentInformationManager.sharedInstance().studentInformationArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -45,8 +45,8 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     
     private func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
         
-        cell.textLabel?.text = "\(appDelegate.studentInformationArray[indexPath.row].firstName) \(appDelegate.studentInformationArray[indexPath.row].lastName)"
-        cell.detailTextLabel?.text = "\(appDelegate.studentInformationArray[indexPath.row].mediaURL)"
+        cell.textLabel?.text = "\(StudentInformationManager.sharedInstance().studentInformationArray[indexPath.row].firstName) \(StudentInformationManager.sharedInstance().studentInformationArray[indexPath.row].lastName)"
+        cell.detailTextLabel?.text = "\(StudentInformationManager.sharedInstance().studentInformationArray[indexPath.row].mediaURL)"
         cell.imageView?.image = UIImage(named: "location")
     }
     
@@ -79,7 +79,7 @@ class ListViewController: BaseViewController, UITableViewDelegate, UITableViewDa
     // MARK: - Helper Functions
     private func refreshTable() {
         setUIEnabled(false)
-        if !(appDelegate.studentInformationArray.isEmpty) {
+        if !(StudentInformationManager.sharedInstance().studentInformationArray.isEmpty) {
             scrollToFirstRow()
         }
         getStudentLocationsData() {

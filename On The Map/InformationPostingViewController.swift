@@ -61,11 +61,11 @@ class InformationPostingViewController: BaseViewController {
     
     @IBAction func submit(sender: UIButton) {
         startActivityIndicator()
-        appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.MediaURL] = URLTextField.text
+        StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.MediaURL] = URLTextField.text
         
-        let loggedInStudentInformation = StudentInformation(dictionary: appDelegate.studentInformationDictionary)
+        let loggedInStudentInformation = StudentInformation(dictionary: StudentInformationManager.sharedInstance().studentInformationDictionary)
         
-        if appDelegate.studentHasAlreadyPosted != nil && appDelegate.studentHasAlreadyPosted! {
+        if StudentInformationManager.sharedInstance().studentHasAlreadyPosted != nil && StudentInformationManager.sharedInstance().studentHasAlreadyPosted! {
             updateStudentInformation(loggedInStudentInformation)
         } else {
             postStudentInformation(loggedInStudentInformation)
@@ -261,9 +261,9 @@ extension InformationPostingViewController: MKMapViewDelegate {
             
             // Add determined latitude, longitude and the map string entered
             // by user to StudentInformationDictionary.
-            self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.MapString] = stringToGeocode
-            self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.Latitude] = Double(latitude!)
-            self.appDelegate.studentInformationDictionary[ParseClient.JSONBodyKeys.Longitude] = Double(longitude!)
+            StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.MapString] = stringToGeocode
+            StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.Latitude] = Double(latitude!)
+            StudentInformationManager.sharedInstance().studentInformationDictionary[ParseClient.JSONBodyKeys.Longitude] = Double(longitude!)
             
             // Perform UI updates while showing and zooming into the map
             self.stopActivityIndicator()
