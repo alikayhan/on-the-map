@@ -68,6 +68,12 @@ class BaseViewController: UIViewController {
             return
         }
         
+        guard toOpen != "" else {
+            print("Not a valid URL to open")
+            showAlert(UIConstants.ErrorTitle.NoValidURL, message: UIConstants.ErrorMessage.NoValidURL)
+            return
+        }
+        
         guard let url = NSURL(string: toOpen) else {
             print("Not a valid URL to open")
             showAlert(UIConstants.ErrorTitle.NoValidURL, message: UIConstants.ErrorMessage.NoValidURL)
