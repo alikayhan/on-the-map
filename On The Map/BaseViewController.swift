@@ -48,7 +48,7 @@ class BaseViewController: UIViewController {
         
         startActivityIndicator()
         
-        ParseClient.sharedInstance().getStudentLocations(1000) {(result, error) in
+        ParseClient.sharedInstance().getStudentLocations(ParseClient.ParameterValues.Limit, order: ParseClient.ParameterValues.Order) {(result, error) in
             if let result = result {
                 self.appDelegate.studentInformationArray = result
                 performUIUpdatesOnMain {

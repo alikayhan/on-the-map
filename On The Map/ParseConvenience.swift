@@ -15,15 +15,15 @@ import UIKit
 extension ParseClient {
     
     // MARK: - Get Student Locations
-    func getStudentLocations(limit: Int, completionHandlerForGetStudentLocations: (result: [StudentInformation]?, error: NSError?) -> Void) {
+    func getStudentLocations(limit: Int, order: String, completionHandlerForGetStudentLocations: (result: [StudentInformation]?, error: NSError?) -> Void) {
     
         /* Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let method: String = Methods.GetStudentLocation
         
-        let parameters = [ParseClient.ParameterKeys.Limit : limit]
+        let parameters = [ParseClient.ParameterKeys.Limit: limit, ParseClient.ParameterKeys.Order: order]
         
         /* Make the request */
-        taskForGETMethod(method, parameters: parameters) { (results, error) in
+        taskForGETMethod(method, parameters: parameters as! [String : AnyObject]) { (results, error) in
         
             /* Send the desired value(s) to completion handler */
             if let error = error {

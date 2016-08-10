@@ -55,6 +55,12 @@ extension ParseClient {
         
     }
     
+    // MARK: - URL Parameter Values
+    struct ParameterValues {
+        static let Limit = 100
+        static let Order = "-updatedAt"
+    }
+    
     // MARK: - JSON Body Keys
     struct JSONBodyKeys {
         
