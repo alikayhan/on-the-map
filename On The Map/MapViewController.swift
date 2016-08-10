@@ -67,23 +67,23 @@ class MapViewController: BaseViewController, MKMapViewDelegate {
         
         for information in appDelegate.studentInformationArray {
             
-            let lat = CLLocationDegrees(information.latitude)
-            let long = CLLocationDegrees(information.longitude)
-            
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            
-            let first = information.firstName
-            let last = information.lastName
-            let mediaURL = information.mediaURL
-            
-            // Create the annotation and set its coordinate, title, and subtitle properties
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(first) \(last)"
-            annotation.subtitle = mediaURL
-            
-            // Place the annotation in an array of annotations
-            annotations.append(annotation)
+            // Check if information has all the attributes which are needed to create an annotation
+            if let lat = information.latitude,
+                let long = information.longitude,
+                let first = information.firstName,
+                let last = information.lastName,
+                let mediaURL = information.mediaURL {
+                let coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+                
+                // Create the annotation and set its coordinate, title, and subtitle properties
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(first) \(last)"
+                annotation.subtitle = mediaURL
+                
+                // Place the annotation in an array of annotations
+                annotations.append(annotation)
+            }
         }
         
         // When the array is complete, add the annotations to the map
