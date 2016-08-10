@@ -85,8 +85,7 @@ class BaseViewController: UIViewController {
     
     // MARK: - Logout Method
     func logout () {
-        let controller = storyboard!.instantiateViewControllerWithIdentifier("LoginViewController")
-        presentViewController(controller, animated: true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
         
         // Delete the session with Udacity's API
         UdacityClient.sharedInstance().deleteSession() { (result, error) in

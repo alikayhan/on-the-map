@@ -26,8 +26,8 @@ class LoginViewController: BaseViewController {
     
     // MARK: - Lifecycle Functions
     override func viewWillAppear(animated: Bool) {
-        configureBackground()
         configureUI()
+        setUIEnabled(true)
     }
     
     override func viewDidLoad() {
